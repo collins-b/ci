@@ -3,7 +3,7 @@
 version: 2
 machine:
   node:
-    version: 6.12
+    version: 7.10
 
 jobs:
   build:

@@ -1,6 +1,10 @@
 # Javascript Node CircleCI 2.0 configuration file
 
 version: 2
+machine:
+  node:
+    version: 6.12
+
 jobs:
   build:
     docker:

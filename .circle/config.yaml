@@ -1,20 +1,21 @@
 # Javascript Node CircleCI 2.0 configuration file
 
 version: 2
-machine:
-  node:
-    version: stable
 
 jobs:
   build:
     docker:
       # specify the version you desire here
-      - image: circleci/node:7.10
+      - image: 'node:8'
       - image: 'postgres:9.6-alpine'
         environment:
           POSTGRES_USER: ubuntu
           POSTGRES_DB: circle_test
           POSTGRES_PASSWORD: ''
+  
+  machine:
+    node:
+      version: stable
 
     working_directory: ~/workspace
 

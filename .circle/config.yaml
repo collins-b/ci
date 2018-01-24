@@ -3,7 +3,7 @@
 version: 2
 machine:
   node:
-    version: 7.10
+    version: stable
 
 jobs:
   build:
@@ -21,11 +21,11 @@ jobs:
     steps:
       - checkout
 
-      # Download and cache dependencies
-      - restore_cache:
-          keys:
-          - v1-dependencies-{{ checksum "package.json" }}
-          - v1-dependencies-
+      # # Download and cache dependencies
+      # - restore_cache:
+      #     keys:
+      #     - v1-dependencies-{{ checksum "package.json" }}
+      #     - v1-dependencies-
 
       - run: yarn install
       - run:

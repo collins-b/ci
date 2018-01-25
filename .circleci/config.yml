@@ -1,11 +1,8 @@
-# Javascript Node CircleCI 2.0 configuration file
-
 version: 2
 
 jobs:
   build:
     docker:
-      # specify the version you desire here
       - image: circleci/node:7.10
       - image: 'postgres:9.6-alpine'
         environment:
@@ -28,11 +25,6 @@ jobs:
           name: Install Node Packages
           command: |
             yarn install
-      # - run:
-      #     name: Install Packages
-      #     command: |
-      #       echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> ~/.npmrc
-      #       yarn
 
       - save_cache:
           paths:

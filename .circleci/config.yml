@@ -18,18 +18,21 @@ jobs:
     steps:
       - checkout
 
-      # # Download and cache dependencies
-      # - restore_cache:
-      #     keys:
-      #     - v1-dependencies-{{ checksum "package.json" }}
-      #     - v1-dependencies-
+      # Download and cache dependencies
+      - restore_cache:
+          keys:
+          - v1-dependencies-{{ checksum "package.json" }}
+          - v1-dependencies-
 
-      # - run: yarn install
       - run:
-          name: Install Packages
+          name: Install Node Packages
           command: |
-            echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> ~/.npmrc
-            yarn
+            yarn install
+      # - run:
+      #     name: Install Packages
+      #     command: |
+      #       echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> ~/.npmrc
+      #       yarn
 
       - save_cache:
           paths:

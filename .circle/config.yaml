@@ -2,6 +2,10 @@
 
 version: 2
 
+machine:
+    node:
+      version: 8.2.0
+
 jobs:
   build:
     docker:
@@ -13,9 +17,6 @@ jobs:
           POSTGRES_DB: circle_test
           POSTGRES_PASSWORD: ''
   
-  machine:
-    node:
-      version: 8.2.0
   dependencies:
     pre:
       - sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test && sudo apt-get update

@@ -40,14 +40,14 @@ jobs:
           name: Running Tests
           command: npm test
 
-      dependencies:
-        pre:
-          - sudo /opt/google-cloud-sdk/bin/gcloud --quiet version
-          - sudo /opt/google-cloud-sdk/bin/gcloud --quiet components update --version 120.0.0
-          - sudo /opt/google-cloud-sdk/bin/gcloud --quiet components update --version 120.0.0 kubectl
-          - docker build -t gcr.io/${PROJECT_ID}/node-app:$CIRCLE_SHA1 .
-          - sudo /opt/google-cloud-sdk/bin/gcloud docker -- push gcr.io/${PROJECT_ID}/node-app:$CIRCLE_SHA1
-          - sudo /opt/google-cloud-sdk/bin/kubectl set image deployment/${DEPLOYMENT_NAME} ${CONTAINER_NAME}=gcr.io/${PROJECT_ID}/node-app:$CIRCLE_SHA1
+      - dependencies:
+          pre:
+            - sudo /opt/google-cloud-sdk/bin/gcloud --quiet version
+            - sudo /opt/google-cloud-sdk/bin/gcloud --quiet components update --version 120.0.0
+            - sudo /opt/google-cloud-sdk/bin/gcloud --quiet components update --version 120.0.0 kubectl
+            - docker build -t gcr.io/${PROJECT_ID}/node-app:$CIRCLE_SHA1 .
+            - sudo /opt/google-cloud-sdk/bin/gcloud docker -- push gcr.io/${PROJECT_ID}/node-app:$CIRCLE_SHA1
+            - sudo /opt/google-cloud-sdk/bin/kubectl set image deployment/${DEPLOYMENT_NAME} ${CONTAINER_NAME}=gcr.io/${PROJECT_ID}/node-app:$CIRCLE_SHA1
           
       deployment:
         production:

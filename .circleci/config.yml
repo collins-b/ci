@@ -19,6 +19,7 @@ jobs:
           IMG_TAG: 0.0.1
           PROJECT_NAME: edms-api
           DEPLOYMENT_ENVIRONMENT: staging
+          DOCKER_PROJECT_NAME : ci
           
 
     working_directory: ~/workspace

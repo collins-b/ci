@@ -50,7 +50,7 @@ jobs:
           name: Deploy Application
           command: |
             sudo chmod -R 777 ./deployment.sh
-            if [ "${CIRCLE_BRANCH}" == "master" ] || [ "${CIRCLE_BRANCH}" == "develop" ]; then
+            if [ "${CIRCLE_BRANCH}" == "dockerize-app" ] || [ "${CIRCLE_BRANCH}" == "develop" ]; then
               ./deployment.sh
             fi
 

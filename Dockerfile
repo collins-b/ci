@@ -7,10 +7,11 @@ EXPOSE 3000
 WORKDIR /usr/src/app
 
 ADD package.json /usr/src/app/
-RUN apt-get update && \
-apt-get install -y postgresql 
 
-RUN npm install --production
+RUN apk add --update make gcc g++ python libc6-compat postgresql-dev bash && \
+ yarn install --production && \
+ apk del make gcc g++ python postgresql-dev && \
+ rm -rf /tmp/* /var/cache/apk/* /root/.yarn /root/.node-gyp
 
 ADD . /usr/src/app/
 

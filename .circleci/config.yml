@@ -4,6 +4,7 @@ jobs:
   build:
     docker:
       - image: circleci/node:7.10
+      - image: google/cloud-sdk
       - image: 'postgres:9.6-alpine'
         environment:
           POSTGRES_USER: ubuntu

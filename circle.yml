@@ -5,7 +5,7 @@ machine:
     POSTGRES_USER: ubuntu
     POSTGRES_DB: circle_test
     POSTGRES_PASSWORD: ''
-    PROJECT_ID: edms-api
+    # PROJECT_ID: edms-api
     CLUSTER_NAME: edms
     CLOUDSDK_COMPUTE_ZONE: us-central1-a
     DEPLOYMENT_NAME: edms-api
@@ -16,7 +16,6 @@ machine:
     PROJECT_NAME: edms-api
     DEPLOYMENT_ENVIRONMENT: staging
     DOCKER_PROJECT_NAME : ci
-    USE_CIRCLECI_BETA: yes
 working_directory: ~/workspace
 
 

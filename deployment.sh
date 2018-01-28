@@ -17,20 +17,20 @@ if [ -z "$USE_CIRCLECI_BETA" ]; then
   # install kubectl and gcloud
   echo " Installing and configuring google cloud"
   sudo /opt/google-cloud-sdk/bin/gcloud --quiet version
-  sudo /opt/google-cloud-sdk/bin/gcloud --quiet components update
-  sudo /opt/google-cloud-sdk/bin/gcloud --quiet components update kubectl
+  sudo /opt/google-cloud-sdk/bin/gcloud --quiet components update --version 120.0.0
+  sudo /opt/google-cloud-sdk/bin/gcloud --quiet components update --version 120.0.0 kubectl
 fi
 
 # set key and authenticate gcloud
 echo $ACCOUNT_ID_KEY | base64 --decode > ${HOME}/gcloud-service-key.json
-sudo /opt/google-cloud-sdk/bin/gcloud auth activate-service-account --key-file ${HOME}/gcloud-service-key.json
+sudo /opt/google-cloud-sdk/bin/gcloud auth activate-service-account ${ACCOUNT_ID_KEY} --key-file ${HOME}/gcloud-service-key.json
 export GOOGLE_APPLICATION_CREDENTIALS=${HOME}/gcloud-service-key.json
 # sudo /opt/google-cloud-sdk/bin/gcloud beta auth application-default activate-service-account --key-file ${HOME}/gcloud-service-key.json
 
 # configure gcloud
 sudo /opt/google-cloud-sdk/bin/gcloud --quiet config set project $PROJECT_NAME
 sudo /opt/google-cloud-sdk/bin/gcloud --quiet config set container/cluster $CLUSTER_NAME
-sudo /opt/google-cloud-sdk/bin/gcloud --quiet config set compute/zone ${CLOUDSDK_COMPUTE_ZONE}
+sudo /opt/google-cloud-sdk/bin/gcloud --quiet config set compute/zone $CLOUDSDK_COMPUTE_ZONE
 sudo /opt/google-cloud-sdk/bin/gcloud --quiet container clusters get-credentials $CLUSTER_NAME
 
 rm -rf ${DOCKER_SOURCE}

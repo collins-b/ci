@@ -16,11 +16,9 @@ echo " Deploying to ${DEPLOYMENT_ENVIRONMENT}"
 if [ -z "$USE_CIRCLECI_BETA" ]; then
   # install kubectl and gcloud
   echo " Installing and configuring google cloud"
-  `yes Y | curl https://sdk.cloud.google.com | bash`
-  `exec -l $SHELL`
-  sudo /opt/google-cloud-sdk/bin/gcloud --quiet version
-  sudo /opt/google-cloud-sdk/bin/gcloud --quiet components update --version 120.0.0
-  sudo /opt/google-cloud-sdk/bin/gcloud --quiet components update --version 120.0.0 kubectl
+  sudo gcloud --quiet version
+  sudo gcloud --quiet components update --version 120.0.0
+  sudo gcloud --quiet components update --version 120.0.0 kubectl
 fi
 
 # set key and authenticate gcloud

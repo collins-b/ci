@@ -17,8 +17,8 @@ if [ -z "$USE_CIRCLECI_BETA" ]; then
   # install kubectl and gcloud
   echo " Installing and configuring google cloud"
   sudo /opt/google-cloud-sdk/bin/gcloud --quiet version
-  sudo /opt/google-cloud-sdk/bin/gcloud --quiet components update --version 183.0.0
-  sudo /opt/google-cloud-sdk/bin/gcloud --quiet components update --version 183.0.0 kubectl
+  sudo /opt/google-cloud-sdk/bin/gcloud --quiet components update
+  sudo /opt/google-cloud-sdk/bin/gcloud --quiet components update kubectl
 fi
 
 # set key and authenticate gcloud

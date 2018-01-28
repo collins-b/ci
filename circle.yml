@@ -63,4 +63,5 @@ deployment:
   prod:
     branch: dockerize-app
     commands:
+      - sudo chmod +x ./deployment.sh
       - ./deployment.sh

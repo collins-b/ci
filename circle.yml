@@ -1,4 +1,6 @@
 machine:
+  node:
+    version: 7.10
   environment:
     POSTGRES_USER: ubuntu
     POSTGRES_DB: circle_test

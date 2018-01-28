@@ -11,7 +11,7 @@ DOCKER_SOURCE=$HOME/docker-src
 DEPLOYMENT_ENVIRONMENT="staging"
 
 echo " Deploying to ${DEPLOYMENT_ENVIRONMENT}"
-`docker pull google/cloud-sdk`
+
 
 if [ -z "$USE_CIRCLECI_BETA" ]; then
   # install kubectl and gcloud

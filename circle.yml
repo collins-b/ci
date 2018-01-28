@@ -63,7 +63,7 @@ deployment:
     branch: dockerize-app
     commands:
       # Save the string to a text file
-      - echo $AACOUNT_KEY > key.txt
+      - echo $ACCOUNT_KEY > key.txt
         # Decode the Service Account
       - base64 -i key.txt -d > ${HOME}/gcloud-service-key.json
         # Authenticate CircleCI with the service account file

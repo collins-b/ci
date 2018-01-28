@@ -22,7 +22,6 @@ jobs:
           DEPLOYMENT_ENVIRONMENT: staging
           DOCKER_PROJECT_NAME : ci
           
-
     working_directory: ~/workspace
 
     steps:

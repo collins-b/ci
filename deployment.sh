@@ -22,7 +22,7 @@ if [ -z "$USE_CIRCLECI_BETA" ]; then
 fi
 
 # set key and authenticate gcloud
-echo $GCLOUD_SERVICE_KEY | base64 --decode > ${HOME}/gcloud-service-key.json
+echo $ACCOUNT_ID | base64 --decode > ${HOME}/gcloud-service-key.json
 sudo /opt/google-cloud-sdk/bin/gcloud auth activate-service-account --key-file ${HOME}/gcloud-service-key.json
 
 # configure gcloud

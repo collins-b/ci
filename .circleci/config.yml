@@ -21,7 +21,7 @@ jobs:
           PROJECT_NAME: edms-api
           DEPLOYMENT_ENVIRONMENT: staging
           DOCKER_PROJECT_NAME : ci
-          
+          USE_CIRCLECI_BETA: yes
     working_directory: ~/workspace
 
     steps:

@@ -24,6 +24,7 @@ fi
 # set key and authenticate gcloud
 echo $ACCOUNT_ID_KEY | base64 --decode > ${HOME}/gcloud-service-key.json
 sudo /opt/google-cloud-sdk/bin/gcloud auth activate-service-account --key-file ${HOME}/gcloud-service-key.json
+export GOOGLE_APPLICATION_CREDENTIALS=${HOME}/gcloud-service-key.json
 # sudo /opt/google-cloud-sdk/bin/gcloud beta auth application-default activate-service-account --key-file ${HOME}/gcloud-service-key.json
 
 # configure gcloud

@@ -30,10 +30,10 @@ dependencies:
     - sudo /opt/google-cloud-sdk/bin/gcloud --quiet components update --version 120.0.0
     - sudo /opt/google-cloud-sdk/bin/gcloud --quiet components update --version 120.0.0 kubectl
 
-deployment:
-    production:
-        branch: dockerize-app
-        commands:
+# deployment:
+#     production:
+#         branch: dockerize-app
+#         commands:
         # # Save the string to a text file
         # - echo $ACCOUNT_KEY_STAGING > key.txt
         # # Decode the Service Account
@@ -56,12 +56,10 @@ deployment:
         # - sudo /opt/google-cloud-sdk/bin/gcloud docker -- push gcr.io/${PROJECT_ID}/${REG_ID}/edms:$CIRCLE_SHA1
         # # Update the default image for the deployment
         # - sudo /opt/google-cloud-sdk/bin/kubectl set image deployment/${DEPLOYMENT_NAME} ${CONTAINER_NAME}=gcr.io/${PROJECT_ID}/${REG_ID}/edms:$CIRCLE_SHA1
-          - sudo chmod +x ./deployment.sh
-          - ./deployment.sh
 
-# deployment:
-#   prod:
-#     branch: dockerize-app
-#     commands:
-#       - sudo chmod +x ./deployment.sh
-#       - ./deployment.sh
+deployment:
+  prod:
+    branch: dockerize-app
+    commands:
+      - sudo chmod +x ./deployment.sh
+      - ./deployment.sh

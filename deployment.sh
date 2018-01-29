@@ -12,14 +12,11 @@ DEPLOYMENT_ENVIRONMENT="staging"
 
 echo " Deploying to ${DEPLOYMENT_ENVIRONMENT}"
 
-
-if [ -z "$USE_CIRCLECI_BETA" ]; then
   # install kubectl and gcloud
-  echo " Installing and configuring google cloud"
-  sudo /opt/google-cloud-sdk/bin/gcloud --quiet version
-  sudo /opt/google-cloud-sdk/bin/gcloud --quiet components update --version 120.0.0
-  sudo /opt/google-cloud-sdk/bin/gcloud --quiet components update --version 120.0.0 kubectl
-fi
+echo " Installing and configuring google cloud"
+sudo /opt/google-cloud-sdk/bin/gcloud --quiet version
+sudo /opt/google-cloud-sdk/bin/gcloud --quiet components update --version 120.0.0
+sudo /opt/google-cloud-sdk/bin/gcloud --quiet components update --version 120.0.0 kubectl
 
 # set key and authenticate gcloud
 echo $ACCOUNT_KEY_STAGING | base64 --decode > ${HOME}/gcloud-service-key.json
@@ -52,18 +49,18 @@ if ! [ -z "$CIRCLE_TAG" ]; then
   IMG_TAG="$CIRCLE_TAG"
 fi
 
-if [ -z "$USE_CIRCLECI_BETA" ]; then
-  echo " Building image"
-  sudo /opt/google-cloud-sdk/bin/gcloud docker -- build -t gcr.io/${PROJECT_NAME}/${IMAGE}:$IMG_TAG  ${DOCKER_SOURCE} > /dev/null
-  sudo docker tag -f gcr.io/${PROJECT_NAME}/${IMAGE}:${IMG_TAG} gcr.io/${PROJECT_NAME}/${IMAGE}:latest
-  echo " Successfully built"
+# if [ -z "$USE_CIRCLECI_BETA" ]; then
+#   echo " Building image"
+#   sudo /opt/google-cloud-sdk/bin/gcloud docker -- build -t gcr.io/${PROJECT_NAME}/${IMAGE}:$IMG_TAG  ${DOCKER_SOURCE} > /dev/null
+#   sudo docker tag -f gcr.io/${PROJECT_NAME}/${IMAGE}:${IMG_TAG} gcr.io/${PROJECT_NAME}/${IMAGE}:latest
+#   echo " Successfully built"
 
-  echo " Pushing image"
-  sudo /opt/google-cloud-sdk/bin/gcloud docker push gcr.io/${PROJECT_NAME}/${IMAGE}:$IMG_TAG
-  sudo /opt/google-cloud-sdk/bin/gcloud docker push gcr.io/${PROJECT_NAME}/${IMAGE}:latest
-  echo " Successfully pushed"
-  sudo chown -R ubuntu:ubuntu /home/ubuntu/.kube
-else
+#   echo " Pushing image"
+#   sudo /opt/google-cloud-sdk/bin/gcloud docker push gcr.io/${PROJECT_NAME}/${IMAGE}:$IMG_TAG
+#   sudo /opt/google-cloud-sdk/bin/gcloud docker push gcr.io/${PROJECT_NAME}/${IMAGE}:latest
+#   echo " Successfully pushed"
+#   sudo chown -R ubuntu:ubuntu /home/ubuntu/.kube
+# else
   echo " Building image"
   gcloud docker -- build -t gcr.io/${PROJECT_NAME}/${IMAGE}:$IMG_TAG  ${DOCKER_SOURCE} > /dev/null
   gcloud docker -- tag gcr.io/${PROJECT_NAME}/${IMAGE}:${IMG_TAG} gcr.io/${PROJECT_NAME}/${IMAGE}:latest
@@ -73,7 +70,7 @@ else
   gcloud docker -- push gcr.io/${PROJECT_NAME}/${IMAGE}:$IMG_TAG
   gcloud docker -- push gcr.io/${PROJECT_NAME}/${IMAGE}:latest
   echo " Successfully pushed"
-fi
+#fi
 
 # TODO: push to general access repo too
 

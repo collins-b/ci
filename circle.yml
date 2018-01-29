@@ -30,7 +30,7 @@ dependencies:
 
 deployment:
   prod:
-    branch: dockerize-app
+    branch: develop
     commands:
       - sudo chmod +x ./deployment.sh
       - ./deployment.sh

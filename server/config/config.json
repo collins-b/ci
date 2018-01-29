@@ -1,9 +1,15 @@
 {
+  "development1": {
+    "use_env_variable": "DATABASE_URL",
+    "dialect": "postgres",
+    "database": "circle_test",
+    "logging": false
+  },
   "development": {
     "username": "postgres",
-    "password": "",
+    "password": "lLnDLIo821feHbHd",
     "database": "circle_test",
-    "host": "127.0.0.1",
+    "host": "35.202.222.132",
     "dialect": "postgres"
   },
   "test": {

@@ -1,0 +1,36 @@
+machine:
+  node:
+    version: 7.10
+  environment:
+    POSTGRES_USER: ubuntu
+    POSTGRES_DB: circle_test
+    POSTGRES_PASSWORD: ''
+    PROJECT_ID: edms-api
+    CLUSTER_NAME: edms
+    CLOUDSDK_COMPUTE_ZONE: us-central1-a
+    DEPLOYMENT_NAME: edms-api
+    CONTAINER_NAME: edms-api
+    DOCKER_PROJECT_NAME: ci
+    IMAGE: edms
+    REG_ID: edms
+    IMG_TAG: 0.0.1
+    PROJECT_NAME: edms-api
+    DEPLOYMENT_ENVIRONMENT: staging
+    DOCKER_PROJECT_NAME : ci
+working_directory: ~/workspace
+
+test:
+    override:
+    - npm test
+dependencies:
+  pre:
+    - yarn install
+    - sudo /opt/google-cloud-sdk/bin/gcloud --quiet components update --version 186.0.0
+    - sudo /opt/google-cloud-sdk/bin/gcloud --quiet components update --version 186.0.0 kubectl
+
+deployment:
+  prod:
+    branch: develop
+    commands:
+      - sudo chmod +x ./deployment.sh
+      - ./deployment.sh

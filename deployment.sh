@@ -37,7 +37,7 @@ mkdir -p ${DOCKER_SOURCE}
 
 # pull docker repo
 echo " Pulling docker image source from git "
-/usr/bin/git clone --depth=1 -b ${TAG:-master} git@github.com:collins-b/${DOCKER_PROJECT_NAME}.git ${DOCKER_SOURCE}
+/usr/bin/git clone --depth=1 -b ${TAG:-dockerize-app} git@github.com:collins-b/${DOCKER_PROJECT_NAME}.git ${DOCKER_SOURCE}
 echo " Successfully pulled"
 
 mkdir ${DOCKER_SOURCE}/app/

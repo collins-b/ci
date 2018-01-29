@@ -8,7 +8,7 @@
   "development": {
     "username": "postgres",
     "password": "lLnDLIo821feHbHd",
-    "database": "circle_test",
+    "database": "postgres",
     "host": "35.202.222.132",
     "dialect": "postgres"
   },

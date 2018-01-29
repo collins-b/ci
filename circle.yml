@@ -12,6 +12,7 @@ machine:
     CONTAINER_NAME: edms-api
     DOCKER_PROJECT_NAME: ci
     IMAGE: edms
+    REG_ID: edms
     IMG_TAG: 0.0.1
     PROJECT_NAME: edms-api
     DEPLOYMENT_ENVIRONMENT: staging
@@ -52,11 +53,11 @@ deployment:
         # Start good old Docker
         - sudo service docker start
         # Build a docker image and use the Github commit hash ($CIRCLE_SHA1) as the tag
-        - docker build -t gcr.io/${PROJECT_ID}/node-app:$CIRCLE_SHA1 .
+        - docker build -t gcr.io/${REG_ID}/edms:$CIRCLE_SHA1 .
         # Push the Image to the GCP Container Registry
-        - sudo /opt/google-cloud-sdk/bin/gcloud docker -- push gcr.io/${PROJECT_ID}/node-app:$CIRCLE_SHA1
+        - sudo /opt/google-cloud-sdk/bin/gcloud docker -- push gcr.io/$REG_ID}/edms:$CIRCLE_SHA1
         # Update the default image for the deployment
-        - sudo /opt/google-cloud-sdk/bin/kubectl set image deployment/${DEPLOYMENT_NAME} ${CONTAINER_NAME}=gcr.io/${PROJECT_ID}/node-app:$CIRCLE_SHA1
+        # - sudo /opt/google-cloud-sdk/bin/kubectl set image deployment/${DEPLOYMENT_NAME} ${CONTAINER_NAME}=gcr.io/${PROJECT_ID}/node-app:$CIRCLE_SHA1
 
 # deployment:
 #   prod:

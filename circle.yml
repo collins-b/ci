@@ -62,19 +62,5 @@ deployment:
   prod:
     branch: dockerize-app
     commands:
-      # Save the string to a text file
-      - echo $ACCOUNT_KEY > key.txt
-        # Decode the Service Account
-      - base64 -i key.txt -d > ${HOME}/gcloud-service-key.json
-        # Authenticate CircleCI with the service account file
-      - sudo /opt/google-cloud-sdk/bin/gcloud auth activate-service-account ${ACCOUNT_ID} --key-file ${HOME}/gcloud-service-key.json
-        # Set the default project
-      - sudo /opt/google-cloud-sdk/bin/gcloud config set project $PROJECT_NAME
-        # Set the default container
-      - sudo /opt/google-cloud-sdk/bin/gcloud --quiet config set container/cluster $CLUSTER_NAME
-        # Set the compute zone
-      - sudo /opt/google-cloud-sdk/bin/gcloud config set compute/zone $CLOUDSDK_COMPUTE_ZONE
-        # Get the cluster credentials.
-      - sudo /opt/google-cloud-sdk/bin/gcloud --quiet container clusters get-credentials $CLUSTER_NAME
       - sudo chmod +x ./deployment.sh
       - ./deployment.sh

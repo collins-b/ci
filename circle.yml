@@ -19,8 +19,6 @@ machine:
     DOCKER_PROJECT_NAME : ci
 working_directory: ~/workspace
 
-
-
 test:
     override:
     - npm test
@@ -57,7 +55,7 @@ deployment:
         # Push the Image to the GCP Container Registry
         - sudo /opt/google-cloud-sdk/bin/gcloud docker -- push gcr.io/${PROJECT_ID}/${REG_ID}/edms:$CIRCLE_SHA1
         # Update the default image for the deployment
-        # - sudo /opt/google-cloud-sdk/bin/kubectl set image deployment/${DEPLOYMENT_NAME} ${CONTAINER_NAME}=gcr.io/${PROJECT_ID}/node-app:$CIRCLE_SHA1
+        - sudo /opt/google-cloud-sdk/bin/kubectl set image deployment/${DEPLOYMENT_NAME} ${CONTAINER_NAME}=gcr.io/${PROJECT_ID}/${REG_ID}/edms:$CIRCLE_SHA1
 
 # deployment:
 #   prod:

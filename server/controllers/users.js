@@ -293,7 +293,7 @@ class UsersController {
         service: 'gmail',
         auth: {
           user: 'nationalmcg@gmail.com',
-          pass: '*wecole#2017'
+          pass: ''
         }
       });
       const mailOptions = {
